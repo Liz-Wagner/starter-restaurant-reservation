@@ -48,6 +48,7 @@ export function formatAsTime(timeString) {
 export function today() {
   return asDateString(new Date());
 }
+console.log("today", today())
 
 /**
  * Subtracts one day to the specified date and return it in as YYYY-MM-DD.
@@ -79,4 +80,26 @@ export function next(currentDate) {
   date.setMonth(date.getMonth());
   date.setDate(date.getDate() + 1);
   return asDateString(date);
+}
+
+export function validateNewReservationDateTime(reservationFormData) {
+  let returnedErrors = [];
+  
+  const currentDateAndTime = new Date();
+  const newReservationDateAndTimeTogether = 
+    reservationFormData.reservation_date + reservationFormData.reservation_time;
+
+    console.log("date/time", newReservationDateAndTimeTogether)
+
+    //validate day
+    const formatedReservationDateAndTime = new Date(newReservationDateAndTimeTogether);
+    if (formatedReservationDateAndTime.getDay() === 2) {
+      returnedErrors.push("Restaurant is closed on Tuesdays.")
+    }
+    if (formatedReservationDateAndTime < currentDateAndTime) {
+      returnedErrors.push("Cannot book reservations for the past.")
+    }
+
+    //validate time
+    
 }

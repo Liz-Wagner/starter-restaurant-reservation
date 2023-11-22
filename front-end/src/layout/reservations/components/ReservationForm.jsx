@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function newReservationForm({handleSubmit, handleFormChange, formData }) {
+export default function ReservationForm({handleSubmit, handleFormChange, formData }) {
     return (
         <div className="form-section">
             <form name="new reservation" onSubmit={handleSubmit}>
                 <div className="form-section">
-                    <label htmlFor="fName" className="fName">First Name:</label>
+                    <label htmlFor="first_name" className="fName">First Name:</label>
                     <input
                         id="first_name"
                         type="text"
@@ -14,11 +14,11 @@ export default function newReservationForm({handleSubmit, handleFormChange, form
                         placeholder="first name"
                         required={true}
                         onChange={handleFormChange}
-                        value={formData.fName}
+                        value={formData.first_name}
                     />
                 </div>
                 <div className="form-section">
-                    <label htmlFor="lName" className="lName">Last Name:</label>
+                    <label htmlFor="last_name" className="lName">Last Name:</label>
                     <input
                         id="last_name"
                         type="text"
@@ -26,16 +26,16 @@ export default function newReservationForm({handleSubmit, handleFormChange, form
                         placeholder="last name"
                         required={true}
                         onChange={handleFormChange}
-                        value={formData.lName}
+                        value={formData.last_name}
                     />
                 </div>
                 <div className="form-section">
-                    <label htmlFor="mobileNumber" className="mobileNumber">Mobile Number:</label>
+                    <label htmlFor="mobile_number" className="mobileNumber">Mobile Number:</label>
                     <input
                         id="mobile_number"
                         type="tel"
                         name="mobile_number"
-                        placeholder="(012)345-6789"
+                        placeholder="012-345-6789"
                         required={true}
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                         onChange={handleFormChange}
@@ -43,7 +43,7 @@ export default function newReservationForm({handleSubmit, handleFormChange, form
                     />
                 </div>
                 <div className="form-section">
-                    <label htmlFor="reservationDate" className="reservationDate">Date of Reservation:</label>
+                    <label htmlFor="reservation_date" className="reservationDate">Date of Reservation:</label>
                     <input
                         id="reservation_date"
                         type="date"
@@ -55,7 +55,7 @@ export default function newReservationForm({handleSubmit, handleFormChange, form
                     />
                 </div>
                 <div className="form-section">
-                    <label htmlFor="reservationTime">Time of Reservation:</label>
+                    <label htmlFor="reservation_time" className="reservationTime">Time of Reservation:</label>
                     <input
                         id="reservation_time"
                         type="time"
@@ -82,8 +82,8 @@ export default function newReservationForm({handleSubmit, handleFormChange, form
                         value={formData.people}
                     />
                 </div>
-                <Link to="/dashboard"><button className="btn btn-primary" type="submit" onSubmit={handleSubmit}>Submit</button></Link> 
-                <Link to=""><button className="btn btn-secondary">Cancel</button></Link>
+                <button className="btn btn-primary" type="submit" onSubmit={handleSubmit}>Submit</button>
+                <Link to={"/"}><button className="btn btn-secondary">Cancel</button></Link>
                 </form>
             </div>
     )

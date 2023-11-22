@@ -2,6 +2,7 @@
  * Defines the base URL for the API.
  * The default values is overridden by the `API_BASE_URL` environment variable.
  */
+//import axios from "axios";
 import formatReservationDate from "./format-reservation-date";
 import formatReservationTime from "./format-reservation-date";
 
@@ -58,6 +59,7 @@ async function fetchJson(url, options, onCancel) {
  *  a promise that resolves to a possibly empty array of reservation saved in the database.
  */
 
+
 export async function listReservations(params, signal) {
   const url = new URL(`${API_BASE_URL}/reservations`);
   Object.entries(params).forEach(([key, value]) =>
@@ -67,3 +69,56 @@ export async function listReservations(params, signal) {
     .then(formatReservationDate)
     .then(formatReservationTime);
 }
+
+export async function createReservation(data, signal) {
+  const url = new URL(`${API_BASE_URL}/reservations`);
+  const options = {
+    headers,
+    signal,
+    method: "POST",
+    body: JSON.stringify({ data }),
+  };
+  return await fetchJson(url, options, data);
+}
+
+
+
+
+
+
+// export async function listReservations(params, signal) {
+//   const url = new URL(`${API_BASE_URL}/reservations`);
+//   Object.entries(params).forEach(([key, value]) =>
+//     url.searchParams.append(key, value.toString())
+//   );
+//   return await fetchJson(url, { headers, signal }, [])
+//     .then(formatReservationDate)
+//     .then(formatReservationTime);
+// }
+
+// export async function listReservations(params, signal) {
+//   const url = new URL(`${API_BASE_URL}/reservations`);
+//   console.log("url", url)
+//   const queryParams = new URLSearchParams(params).toString();
+//   console.log("params", queryParams)
+//   try {
+//     if (queryParams) {
+//     return await axios.get(`${url}?${queryParams}`, {
+//       headers: headers
+//     })}
+//     else {
+//       return await axios
+//     }
+//   } catch (error) {
+//     // Handle errors or rethrow for the calling function to handle
+//     throw error;
+//   }
+// }
+
+
+// export async function createReservation(reservationFormData, signal) {
+//   const url = new URL(`${API_BASE_URL}/reservations`);
+//   return await axios.post(`${url}/reservations`, reservationFormData, {
+//     headers: headers
+//   });
+// }
