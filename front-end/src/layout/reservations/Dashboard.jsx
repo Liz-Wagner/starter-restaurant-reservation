@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { listReservations } from "../../utils/api";
+import { today, previous, next } from "../../utils/date-time";
+import useQuery from "../../utils/useQuery";
 import ReservationsList from "./components/ReservationsList"
 import ErrorAlert from "../ErrorAlert"
-import { listReservations } from "../../utils/api";
-import { today } from "../../utils/date-time";
-import useQuery from "../../utils/useQuery";
+
 
 console.log("today2", today)
 
@@ -23,7 +25,7 @@ export default function Dashboard() {
             .catch(setError);
         return () => abortController.abort();
     }
-    console.log("res", reservations)
+    //console.log("res", reservations)
 
     const query = useQuery();
     let queryDate = query.get("date");
@@ -39,6 +41,21 @@ export default function Dashboard() {
         <main>
             <h1>Dashboard</h1>
             <h3>Reservations for {date}</h3>
+            <Link to={`/dashboard?date=${previous(date)}`}>
+                <button className="btn btn-secondary" type="button">
+                    Previous Day
+                </button>
+            </Link>
+            <Link to={`/dashboard?date=${today(date)}`}>
+            <button className="btn btn-secondary" type="button">
+                    Today
+                </button>
+            </Link>
+            <Link to={`/dashboard?date=${next(date)}`}>
+                <button className="btn btn-secondary" type="button">
+                    Next Day
+                </button>
+            </Link>
             <ReservationsList reservations={reservations} />
             <ErrorAlert error={error} />
         </main>
