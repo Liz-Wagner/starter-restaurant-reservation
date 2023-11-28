@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Dashboard from "./reservations/Dashboard"
 import NotFound from "./NotFound";
 import CreateReservation from "./reservations/CreateReservation";
-
+import CreateTable from "./reservations/CreateTable";
 /**
  * Defines all the routes for the application.
  *
@@ -26,6 +26,9 @@ function Routes() {
       </Route>
       <Route path="/reservations/new">
         <CreateReservation />
+      </Route>
+      <Route path="/tables/new">
+        <CreateTable />
       </Route>
       <Route>
         <NotFound />

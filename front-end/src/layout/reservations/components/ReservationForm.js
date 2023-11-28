@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import CancelBtn from "./CancelBtn";
 
-export default function ReservationForm({handleSubmit, handleFormChange, formData }) {
+export default function ReservationForm({ handleSubmit, handleFormChange, formData }) {
     return (
         <div className="form-section">
             <form name="new reservation" onSubmit={handleSubmit}>
@@ -83,8 +83,8 @@ export default function ReservationForm({handleSubmit, handleFormChange, formDat
                     />
                 </div>
                 <button className="btn btn-primary" type="submit" onSubmit={handleSubmit}>Submit</button>
-                <Link to={"/"}><button className="btn btn-secondary">Cancel</button></Link>
-                </form>
-            </div>
+                <CancelBtn />
+            </form>
+        </div>
     )
 }

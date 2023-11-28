@@ -15,8 +15,8 @@ router
     .all(methodNotAllowed);
 
 router
-    .route("reservations/new")
-    
+    .route("/:reservationId")
+    .get(controller.read)
     .all(methodNotAllowed);
 
 module.exports = router;
